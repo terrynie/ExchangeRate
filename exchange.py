@@ -5,9 +5,6 @@ import MySQLdb
 
 class exchange:
 
-    def __init__(self):
-        
-
     # 将string转换为float
     def strToFloat(self,str):
         mFloat = 0.0
@@ -47,7 +44,7 @@ class exchange:
     #更新指定银行指定货币汇率的更新时间
     def updateTime(self,bank,currency,date,conn):
         cursor = conn.cursor()
-        sql = "UPDATE updateTime SET lastreleasedate='%s' WHERE bank='%s' AND currency='%s'" % (date,bank,currency)
+        sql = "INSERT INTO updateTime(bank, currency, lastreleasedate) VALUES('%s','%s','%s') " % (bank,currency,date)
         cursor.execute(sql)
         conn.commit()
 

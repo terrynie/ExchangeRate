@@ -16,7 +16,4 @@ while 1:
     contents = ex.readHtml()
     ex.splitAndStore(contents,conn)
     #每小时更新一次数据
-    time.sleep(6)
-    print(1)
-
-
+    time.sleep(60*60)
