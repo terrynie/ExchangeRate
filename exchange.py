@@ -44,7 +44,7 @@ class exchange:
     #更新指定银行指定货币汇率的更新时间
     def updateTime(self,bank,currency,date,conn):
         cursor = conn.cursor()
-        sql = "INSERT INTO updateTime(bank, currency, lastreleasedate) VALUES('%s','%s','%s') " % (bank,currency,date)
+        sql = "UPDATE updateTime SET lastereleasedate='%s' WHERE bank='%s' AND currency='%s'" % (date, bank, currency)
         cursor.execute(sql)
         conn.commit()
 
