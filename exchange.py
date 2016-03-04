@@ -12,7 +12,7 @@ class exchange:
             mFloat = float(str)
         return mFloat
 
-    # 进行数据存储操作
+    # 汇率表中插入新纪录
     def saveData(self,content,conn):
         cursor = conn.cursor()
         if(content[1] != ''):
@@ -26,25 +26,36 @@ class exchange:
             cashBuyPrice = self.strToFloat(content[7])
             sellPrice2 = self.strToFloat(content[8])
             releasedate = content[9]
-            sql = "INSERT INTO exchange_rate(bank, currency, code, currencyUnit, cenPrice, remittanceBuyPrice, sellPrice, cashBuyPrice, sellPrice2, releasedate) VALUES('%s','%s','%s','%s','%f','%f','%f','%f','%f','%s') " % (bank,currency,code,currencyUnit,cenPrice,remittanceBuyPrice,sellPrice,cashBuyPrice,sellPrice2,releasedate)
+            releasetime = content[10]
+            sql = "INSERT INTO exchange_rate(bank, currency, code, currencyUnit, cenPrice, remittanceBuyPrice, sellPrice, cashBuyPrice, sellPrice2, releasedate, releasetime, flag) VALUES('%s','%s','%s','%s','%f','%f','%f','%f','%f','%s','%s','%d') " % (bank,currency,code,currencyUnit,cenPrice,remittanceBuyPrice,sellPrice,cashBuyPrice,sellPrice2,releasedate,releasetime,1)
             cursor.execute(sql)
             conn.commit()
 
     #查询指定银行指定货币汇率的更新时间
-    def queryTime(self,bank,currency,conn):
+    def queryUpdateTime(self,bank,currency,conn):
         cursor = conn.cursor()
         sql = "SELECT * FROM updateTime WHERE bank='%s' AND currency='%s'" % (bank, currency)
         cursor.execute(sql)
         result = cursor.fetchall()
-        releasedate = ''
-        for row in result:
-             releasedate = row[2]
-        return releasedate
+        # releasedate = ''
+        # for row in result:
+        #      releasedate = row[2]
+        # return releasedate
+        return result
+
+    #首次插入更新时间表
+    def insertToUpdateTime(self, bank, currency, date, time, conn):
+        cursor = conn.cursor()
+        sql = "INSERT INTO updateTime(bank, currency, lastreleasedate, lastreleasetime) VALUES ('%s','%s','%s','%s')" % (bank, currency, date, time)
+        cursor.execute(sql)
+        conn.commit()
 
     #更新指定银行指定货币汇率的更新时间
-    def updateTime(self,bank,currency,date,conn):
+    def updateTime(self,bank,currency,date,time,conn):
         cursor = conn.cursor()
-        sql = "UPDATE updateTime SET lastereleasedate='%s' WHERE bank='%s' AND currency='%s'" % (date, bank, currency)
+        sql1 = "UPDATE exchange_rate SET flag='%d' WHERE bank='%s' AND currency='%s'" % (0, bank, currency)
+        cursor.execute(sql1)
+        sql = "UPDATE updateTime SET lastreleasedate='%s' AND lastreleasetime='%s' WHERE bank='%s' AND currency='%s'" % (date, time, bank, currency)
         cursor.execute(sql)
         conn.commit()
 
@@ -53,13 +64,15 @@ class exchange:
         for content in contents:
             #查看是否是第一次执行程序
             try:
-                date = self.queryTime(content[0],content[1],conn)
-                if(date != content[9]):
+                record = self.queryUpdateTime(content[0],content[1],conn)
+                if(record == ()):
+                    self.insertToUpdateTime(content[0],content[1],content[9],content[10],conn)
+                    self.saveData(content,conn)
+                if(record[9] != content[9] or record[10] != content[10]):
                     self.updateTime(content[0],content[1],content[9],conn)
                     self.saveData(content,conn)
             except:
-                self.updateTime(content[0],content[1],content[9],conn)
-                self.saveData(content,conn)
+                continue
 
     #读取网页内容并使用正则表达式进行提取,并返回数据
     def readHtml(self):
@@ -74,7 +87,7 @@ class exchange:
         response = urllib2.urlopen(request)
         html = response.read()
         html = html.decode('gb2312','ignore').encode('utf-8')
-        condition = "{bank:'(.*?)',currency:'(.*?)',code:'(.*?)',currencyUnit:'(.*?)',cenPrice:'(.*?)',buyPrice1:'(.*?)',sellPrice1:'(.*?)',buyPrice2:'(.*?)',sellPrice2:'(.*?)',releasedate:'(.*?)'}"
+        condition = "{bank:'(.*?)',currency:'(.*?)',code:'(.*?)',currencyUnit:'(.*?)',cenPrice:'(.*?)',buyPrice1:'(.*?)',sellPrice1:'(.*?)',buyPrice2:'(.*?)',sellPrice2:'(.*?)',releasedate:'(.*?) (.*?)'}"
         contents = re.findall(condition,html,re.S)
         return contents
 
