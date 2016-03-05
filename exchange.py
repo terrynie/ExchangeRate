@@ -55,7 +55,7 @@ class exchange:
         cursor = conn.cursor()
         sql1 = "UPDATE exchange_rate SET flag='%d' WHERE bank='%s' AND currency='%s'" % (0, bank, currency)
         cursor.execute(sql1)
-        sql = "UPDATE updateTime SET lastreleasedate='%s' AND lastreleasetime='%s' WHERE bank='%s' AND currency='%s'" % (date, time, bank, currency)
+        sql = "UPDATE updateTime SET lastreleasedate='%s' , lastreleasetime='%s' WHERE bank='%s' AND currency='%s'" % (date, time, bank, currency)
         cursor.execute(sql)
         conn.commit()
 
@@ -65,13 +65,13 @@ class exchange:
             #查看是否是第一次执行程序
             try:
                 record = self.queryUpdateTime(content[0],content[1],conn)
-                if(record == ()):
+                if(len(record)==0):
                     self.insertToUpdateTime(content[0],content[1],content[9],content[10],conn)
                     self.saveData(content,conn)
-                if(record[9] != content[9] or record[10] != content[10]):
-                    self.updateTime(content[0],content[1],content[9],conn)
+                if(record[len(record)-1][2] != content[9] or record[len(record)-1][3] != content[10]):
+                    self.updateTime(content[0],content[1],content[9],content[10],conn)
                     self.saveData(content,conn)
-            except:
+            except :
                 continue
 
     #读取网页内容并使用正则表达式进行提取,并返回数据
