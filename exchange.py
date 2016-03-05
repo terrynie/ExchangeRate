@@ -53,7 +53,9 @@ class exchange:
     #更新指定银行指定货币汇率的更新时间
     def updateTime(self,bank,currency,date,time,conn):
         cursor = conn.cursor()
-        sql1 = "UPDATE exchange_rate SET flag='%d' WHERE bank='%s' AND currency='%s'" % (0, bank, currency)
+        sql2 = "UPDATE exchange_rate SET flag='%d' WHERE bank='%s' AND currency='%s' AND flag='%d'" % (-1, bank, currency,0)
+        cursor.execute(sql2)
+        sql1 = "UPDATE exchange_rate SET flag='%d' WHERE bank='%s' AND currency='%s' AND flag='%d'" % (0, bank, currency,1)
         cursor.execute(sql1)
         sql = "UPDATE updateTime SET lastreleasedate='%s' , lastreleasetime='%s' WHERE bank='%s' AND currency='%s'" % (date, time, bank, currency)
         cursor.execute(sql)

@@ -6,7 +6,7 @@ from exchange import exchange
 #数据库连接信息
 host="localhost"
 user="root"
-passwd="root"
+passwd="nmy408911"
 dbname="exchange"
 charset="utf8"
 
