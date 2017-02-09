@@ -26,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="exchange.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="exchange.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/exchange.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="1.0576923">
               <caret line="60" column="27" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
               <folding>
                 <element signature="e#14#28#0" expanded="true" />
@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15384616">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="17" />
               <folding>
                 <element signature="e#36#47#0" expanded="true" />
               </folding>
@@ -89,8 +89,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1749" />
-    <option name="y" value="115" />
+    <option name="x" value="-1729" />
+    <option name="y" value="-75" />
     <option name="width" value="1600" />
     <option name="height" value="900" />
   </component>
@@ -117,7 +117,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -138,6 +137,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -404,7 +404,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1749" y="115" width="1600" height="900" extended-state="0" />
+    <frame x="-1729" y="-75" width="1600" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.006418485" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -451,6 +451,39 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/exchange.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="27" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+          <folding>
+            <element signature="e#14#28#0" expanded="true" />
+            <element signature="e#132#221#0" expanded="false" />
+            <marker date="1457150813000" expanded="true" signature="835:1063" placeholder="INSERT INTO ..." />
+            <marker date="1457150813000" expanded="true" signature="1368:1426" placeholder="SELECT * FRO..updateTime..." />
+            <marker date="1457150813000" expanded="true" signature="1783:1884" placeholder="INSERT INTO ..." />
+            <marker date="1457150813000" expanded="true" signature="2093:2175" placeholder="UPDATE excha..." />
+            <marker date="1457150813000" expanded="true" signature="2247:2310" placeholder="UPDATE excha..." />
+            <marker date="1457150813000" expanded="true" signature="2247:2315" placeholder="UPDATE excha..." />
+            <marker date="1457150813000" expanded="true" signature="2247:2329" placeholder="UPDATE excha..." />
+            <marker date="1457150813000" expanded="true" signature="2253:2310" placeholder="SELECT * FRO..exchange_rate..." />
+            <marker date="1457150813000" expanded="true" signature="2399:2498" placeholder="UPDATE updat..." />
+            <marker date="1457150813000" expanded="true" signature="2405:2441" placeholder="update updat..." />
+            <marker date="1457150813000" expanded="true" signature="2405:2480" placeholder="update updat..." />
+            <marker date="1457150813000" expanded="true" signature="2405:2498" placeholder="update updat..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#36#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/exchange.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -943,9 +976,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exchange.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="17" />
+          <folding>
+            <element signature="e#36#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exchange.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0576923">
           <caret line="60" column="27" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
           <folding>
             <element signature="e#14#28#0" expanded="true" />
@@ -962,16 +1005,6 @@
             <marker date="1457150813000" expanded="true" signature="2405:2441" placeholder="update updat..." />
             <marker date="1457150813000" expanded="true" signature="2405:2480" placeholder="update updat..." />
             <marker date="1457150813000" expanded="true" signature="2405:2498" placeholder="update updat..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15384616">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding>
-            <element signature="e#36#47#0" expanded="true" />
           </folding>
         </state>
       </provider>

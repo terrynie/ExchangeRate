@@ -1,5 +1,6 @@
 #coding:utf-8
 import urllib2
+import cookielib
 import re
 import MySQLdb
 
@@ -82,7 +83,7 @@ class exchange:
             'Connection': 'Keep-Alive',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4',
-            'Cookie':'vjuids=-33daed2da.152fe7ce078.0.41c5eb1c; vjlast=1455968543.1456497069.13; HexunTrack=SID=2016022019423407476fdfcb307fe4b3abfa46be4d178e670&CITY=41&TOWN=410100',
+            'Cookie':self.getCookie(),
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
         })
 
@@ -97,4 +98,16 @@ class exchange:
     def makeConnectionToMySQL(self,host,user,passwd,dbname,charset):
         conn = MySQLdb.connect(host=host, user=user ,passwd=passwd, db=dbname, charset=charset)
         return conn
+
+    def getCookie(self):
+        url = 'http://data.bank.hexun.com/other/cms/foreignexchangejson.ashx?callback=ShowDatalist'
+        # url = 'https://www.baidu.com'
+        cj = cookielib.CookieJar()
+        opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+        opener.addheaders = [('User-Agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]
+        urllib2.install_opener(opener)
+        res = urllib2.urlopen(url)
+
+        for index, co in enumerate(cj):
+            return co.name + '=' + co.value
 
